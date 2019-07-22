@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>CookBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="@{{recipe}}" method="get">
+    <h2>Название рецепта: <span th:text="${recipe.recipeName}"></span></h2>
+    <p>Ингредиенты:</p>
+    <p><table><tr th:each="ing : ${recipe.ingredientsAsList()}"><th th:text="${ing}"></th></tr></table></p>
+    <p>Порядок приготовления:</p>
+    <p><table><tr th:each="alg : ${recipe.algorithmAsList()}"><th th:text="$alg"></th></tr></table></p>
+    <p>Автор: </p>
+    <p>Рейтинг: <span th:text="${recipe.rating}"></span></p>
+    <a th:href="@{/}">На главную</a>
+</form>
+</body>
+</html>

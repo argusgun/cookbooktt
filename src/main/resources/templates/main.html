@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>CookBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"/>
+</form>
+<p>Hello, User!</p>
+<form method="get" th:action="@{/}">
+    <table>
+        <title>Список рецептов</title>
+        <tr>
+            <td>Название</td>
+            <td>Описание</td>
+            <td>Ингредиенты</td>
+            <td>Категории</td>
+            <td>Автор</td>
+            <td>Рейтинг</td>
+            <td></td>
+        </tr>
+            <tbody>
+            <tr th:each="recipe : ${recipes}">
+                <th>${recipe.recipeName}</th>
+                <th>${recipe.description}</th>
+                <div><table><tr th:each="ing : ${recipe.ingredientsAsList()}"><th th:text="${ing}"></th></tr></table></div>
+                <th><table><tr th:each="ca : ${recipe.getCategories()}"><th th:text="${ca}"></th></tr></table></th>
+                <th></th>
+                <th>${recipe.rating}</th>
+                <th><a th:href="@{/${recipe.id}}">Подробнее</a></th>
+            </tr>
+            </tbody>
+    </table>
+</form>
+<a th:href="@{/addrecipe}">Добавить рецепт</a>
+</body>
+</html>

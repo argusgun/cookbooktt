@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>CookBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="@{/addingredients}" method="get">
+    <h2>Название: ${recipe.}</h2>
+    <div>Описание: ${recipe.description}</div>
+    <div>Категории:</div>
+    <div><table><#list recipe.getCategories() as cat><tr><th>${cat}</th></tr><#else> Категории не выбраны</#list></table></div>
+</form>
+<form action="/addingredients" method="post">
+    <div>Ингредиент: <input type="text" name="ingredient" placeholder="Введите ингредиент"><button type="submit">Добавить ингредиент</button> </div>
+</form>
+<form action="/addingredients" method="get">
+    <div>Состав:</div>
+    <div>
+        <table>
+            <#list ingredients as ing>
+                <tr>
+                    <th> ${ing}</th>
+                </tr>
+            <#else >
+                Ингредиенты отсутствуют
+            </#list>
+        </table>
+    </div>
+</form>
+<form action="/addingredients" method="post">
+    <div>Действие: <input type="text" name="cookingalgorithm" placeholder="Опишите действие"><button type="submit">Добавить действие</button> </div>
+</form>
+<form th:action="@{/addingredients}" method="get">
+    <div>Порядок приготовления:</div>
+    <div>
+        <table>
+            <#list algorithm as alg>
+                <tr>
+                    <th> ${alg}</th>
+                </tr>
+            <#else >
+                Порядок действий не описан
+            </#list>
+        </table>
+    </div>
+</form>
+<form th:action="@{/addRecipe}" method="post">
+    <button type="submit">Добавить рецепт в базу</button>
+</form>
+</body>
+</html>

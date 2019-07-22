@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>CookBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="@{/addrecipe}" method="post">
+    Название рецепта: <input type="text" name="name" placeholder="Введите название">
+    Описание: <input type="text" name="description" placeholder="Опишите блюдо">
+    <#list category as cat>
+        <div>
+            <label><input type="checkbox" name="${cat}" >${cat}</label>
+        </div>
+    </#list>
+    <button type="submit">Далее</button>
+</form>
+</body>
+</html>
